@@ -6,11 +6,11 @@ class TCartCounterIcon extends StatelessWidget {
   const TCartCounterIcon({
     super.key,
     this.iconColor = TColors.white,
-    required this.onPressed,
+    this.onPressed,
   });
 
   final Color? iconColor;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
