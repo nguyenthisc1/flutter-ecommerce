@@ -1,12 +1,11 @@
 import 'package:ecommerce/common/widgets/appbar/appbar.dart';
 import 'package:ecommerce/common/widgets/appbar/products/cart/cart_menu_icon.dart';
-import 'package:ecommerce/common/widgets/brands/brand_show_case.dart';
+import 'package:ecommerce/common/widgets/brands/brand_card.dart';
 import 'package:ecommerce/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:ecommerce/common/widgets/layout/grid_layout.dart';
-import 'package:ecommerce/common/widgets/brands/brand_card.dart';
 import 'package:ecommerce/common/widgets/texts/section_heading.dart';
+import 'package:ecommerce/features/shop/screens/store/widgets/gallery_tab.dart';
 import 'package:ecommerce/utils/constants/colors.dart';
-import 'package:ecommerce/utils/constants/image_strings.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
 import 'package:ecommerce/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +39,8 @@ class StoreScreen extends StatelessWidget {
                 backgroundColor: dark ? TColors.black : TColors.white,
                 expandedHeight: 440,
                 flexibleSpace: Padding(
-                  padding: const EdgeInsets.all(TSizes.defaultSpace),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: TSizes.defaultSpace, vertical: 50),
                   child: ListView(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -91,36 +91,11 @@ class StoreScreen extends StatelessWidget {
           },
           body: const TabBarView(
             children: [
-              Padding(
-                padding: EdgeInsets.all(TSizes.defaultSpace),
-                child: Column(children: [
-                  // BRANDS
-                  TBrandShowcase(
-                    images: [
-                      TImages.productImage1,
-                      TImages.productImage10,
-                      TImages.productImage11
-                    ],
-                  ),
-
-                  // PRODUCTS
-                ]),
-              ),
-              Padding(
-                padding: EdgeInsets.all(TSizes.defaultSpace),
-                child: Column(children: [
-                  // BRANDS
-                  TBrandShowcase(
-                    images: [
-                      TImages.productImage1,
-                      TImages.productImage10,
-                      TImages.productImage11
-                    ],
-                  ),
-
-                  // PRODUCTS
-                ]),
-              )
+              TGalleryTab(),
+              TGalleryTab(),
+              TGalleryTab(),
+              TGalleryTab(),
+              TGalleryTab(),
             ],
           ),
         ),

@@ -1,4 +1,3 @@
-
 import 'package:ecommerce/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:ecommerce/common/widgets/brands/brand_card.dart';
 import 'package:ecommerce/utils/constants/colors.dart';
@@ -27,6 +26,8 @@ class TBrandShowcase extends StatelessWidget {
       child: Column(children: [
         // BRAND WITH PRODUCTS COUNT
         const TBrandCard(showBorder: false),
+        const SizedBox(height: TSizes.spaceBtwItems),
+        
         // BRAND TOP 3 PRODUCT IMAGE
         Row(
           children: images
