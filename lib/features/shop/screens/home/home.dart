@@ -37,9 +37,7 @@ class HomeScreen extends StatelessWidget {
                   icon: Iconsax.search_normal,
                 ),
 
-                SizedBox(
-                  height: TSizes.spaceBtwSections,
-                ),
+                SizedBox(height: TSizes.spaceBtwSections),
 
                 // CATEGORIES
                 TSearchHeading(
@@ -49,12 +47,12 @@ class HomeScreen extends StatelessWidget {
                   textColor: TColors.white,
                 ),
 
-                SizedBox(
-                  height: TSizes.spaceBtwItems,
-                ),
+                SizedBox(height: TSizes.spaceBtwItems),
 
                 // CATEGORIES
-                THomeCategories()
+                THomeCategories(),
+
+                SizedBox(height: TSizes.spaceBtwSections),
               ]),
             ),
 
