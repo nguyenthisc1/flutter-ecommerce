@@ -3,6 +3,7 @@ import 'package:ecommerce/common/widgets/custom_shapes/containers/primary_header
 import 'package:ecommerce/common/widgets/list_tile/setting_menu_tile.dart';
 import 'package:ecommerce/common/widgets/list_tile/user_profile_tile.dart';
 import 'package:ecommerce/common/widgets/texts/section_heading.dart';
+import 'package:ecommerce/features/personalization/screens/address/address.dart';
 import 'package:ecommerce/features/personalization/screens/profile/profile.dart';
 import 'package:ecommerce/utils/constants/colors.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
@@ -34,8 +35,7 @@ class SettingsScreen extends StatelessWidget {
 
               // USER PROFILE CARD
               TUserProfileTile(
-                onPressed: () => Get.to(() => const ProfileScreen())
-              ),
+                  onPressed: () => Get.to(() => const ProfileScreen())),
 
               const SizedBox(height: TSizes.spaceBtwSections),
             ],
@@ -53,10 +53,11 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: TSizes.spaceBtwItems),
 
-                const TSettingMenuTile(
+                TSettingMenuTile(
                   icon: Iconsax.safe_home,
                   title: "My Address",
                   subTitle: "Set shopping delivery address",
+                  onTap: () => Get.to(() => const UserAddressScreen()),
                 ),
                 const TSettingMenuTile(
                   icon: Iconsax.shopping_cart,

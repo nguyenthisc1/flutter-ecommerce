@@ -1,7 +1,8 @@
 import 'package:ecommerce/common/widgets/appbar/appbar.dart';
-import 'package:ecommerce/utils/constants/colors.dart';
+import 'package:ecommerce/common/widgets/products/ratings/rating_indicator.dart';
+import 'package:ecommerce/features/shop/screens/product_reviews/widgets/rating_progress_rating.dart';
+import 'package:ecommerce/features/shop/screens/product_reviews/widgets/user_review_card.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
-import 'package:ecommerce/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
 
 class ProductReviewsScreen extends StatelessWidget {
@@ -25,45 +26,13 @@ class ProductReviewsScreen extends StatelessWidget {
               const SizedBox(height: TSizes.spaceBtwItems),
 
               // OVERALL PRODUCT RATINGS
-              Row(
-                children: [
-                  Expanded(
-                      flex: 3,
-                      child: Text('4.8',
-                          style: Theme.of(context).textTheme.displayLarge)),
-                  Expanded(
-                    flex: 7,
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Text('5',
-                                  style:
-                                      Theme.of(context).textTheme.bodyMedium),
-                            ),
-                            Expanded(
-                              flex: 11,
-                              child: SizedBox(
-                                width:
-                                    TDeviceUtils.getScreenWidth(context) * 0.8,
-                                child: LinearProgressIndicator(
-                                    value: 0.5,
-                                    minHeight: 11,
-                                    backgroundColor: TColors.grey,
-                                    valueColor: const AlwaysStoppedAnimation(
-                                        TColors.primary),
-                                    borderRadius: BorderRadius.circular(7)),
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              )
+              const TOverallProductRatings(),
+              const TRatingBarIndicator(rating: 3.5),
+              Text('3.5', style: Theme.of(context).textTheme.bodySmall),
+              const SizedBox(height: TSizes.spaceBtwSections),
+
+              // USER REVIEWS LIST
+              const UserReviewCard()
             ],
           ),
         ),

@@ -56,7 +56,7 @@ class TProductMetaData extends StatelessWidget {
         const SizedBox(width: TSizes.spaceBtwItems / 1.5),
 
         // TITLE
-        TProductTitleText(
+        const TProductTitleText(
           title: 'Green Nike Sports Shirt123',
           textAlign: TextAlign.right,
         ),
@@ -65,7 +65,7 @@ class TProductMetaData extends StatelessWidget {
         // STOCK STATUS
         Row(
           children: [
-            TProductTitleText(title: 'Status'),
+            const TProductTitleText(title: 'Status'),
             const SizedBox(width: TSizes.spaceBtwItems),
             Text('In Stock', style: Theme.of(context).textTheme.titleMedium),
           ],
