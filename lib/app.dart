@@ -1,4 +1,5 @@
 import 'package:ecommerce/features/personalization/screens/settings/settings.dart';
+import 'package:ecommerce/features/shop/screens/cart/cart.dart';
 import 'package:ecommerce/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +14,7 @@ class App extends StatelessWidget {
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
       // home: const OnboardingScreen(),
-      home: const SettingsScreen(),
+      home: const CartScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
