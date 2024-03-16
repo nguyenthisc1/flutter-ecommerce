@@ -1,7 +1,9 @@
 import 'package:ecommerce/common/widgets/appbar/appbar.dart';
 import 'package:ecommerce/common/widgets/products/cart/cart_menu_icon.dart';
+import 'package:ecommerce/features/shop/screens/cart/cart.dart';
 import 'package:ecommerce/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class THomeAppbar extends StatelessWidget {
   const THomeAppbar({
@@ -32,7 +34,7 @@ class THomeAppbar extends StatelessWidget {
       ),
       actions: [
         TCartCounterIcon(
-          onPressed: () {},
+          onPressed: () => Get.to(() => const CartScreen()),
         )
       ],
     );

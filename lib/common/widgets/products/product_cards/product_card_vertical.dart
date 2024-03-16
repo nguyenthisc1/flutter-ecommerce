@@ -33,12 +33,13 @@ class TProductCardVertical extends StatelessWidget {
           TRoundedContainer(
             width: double.infinity,
             height: 180,
-            padding: const EdgeInsets.all(TSizes.sm),
             backgroundColor: dark ? TColors.dark : TColors.light,
             child: Stack(
               children: [
                 // THUMBNAIL IMAGE
                 const TRoundedImage(
+                  width: double.infinity,
+                  height: double.infinity,
                   imageUrl: TImages.productImage1,
                   applyImageRadius: true,
                 ),
@@ -63,8 +64,8 @@ class TProductCardVertical extends StatelessWidget {
 
                 // FAVORITE BUTTON
                 const Positioned(
-                    top: 0,
-                    right: 0,
+                    top: 6,
+                    right: 6,
                     child: TCircularIcon(
                       icon: Iconsax.heart5,
                       color: Colors.red,
