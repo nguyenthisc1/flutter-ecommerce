@@ -2,6 +2,7 @@ import 'package:ecommerce/features/personalization/screens/settings/settings.dar
 import 'package:ecommerce/features/shop/screens/cart/cart.dart';
 import 'package:ecommerce/features/shop/screens/home/home.dart';
 import 'package:ecommerce/features/shop/screens/order/order.dart';
+import 'package:ecommerce/features/shop/screens/sub_category/sub_category.dart';
 import 'package:ecommerce/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,7 +17,7 @@ class App extends StatelessWidget {
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
       // home: const OnboardingScreen(),
-      home: const OrderScreen(),
+      home: const HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
