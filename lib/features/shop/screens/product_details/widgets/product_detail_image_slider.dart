@@ -44,7 +44,7 @@ class TProductImageSlider extends StatelessWidget {
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: 4,
-                  itemBuilder: (_, idx) => TRoundedImage(
+                  itemBuilder: (_, index) => TRoundedImage(
                       width: 80,
                       backgroundColor: dark
                           ? TColors.dark

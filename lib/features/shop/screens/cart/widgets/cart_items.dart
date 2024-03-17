@@ -20,7 +20,7 @@ class TCartItems extends StatelessWidget {
         separatorBuilder: (_, __) => const SizedBox(
               height: TSizes.spaceBtwSections,
             ),
-        itemBuilder: (_, idx) => Column(
+        itemBuilder: (_, index) => Column(
               children: [
                 const TCartItem(),
                 if (showAddRemoveButtons)
