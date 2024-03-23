@@ -10,6 +10,7 @@ class SignupController extends GetxController {
 
   // VARIABLES
   final hidePassword = true.obs;
+  final privacyPolicy = true.obs;
   final email = TextEditingController();
   final lastName = TextEditingController();
   final fistName = TextEditingController();
@@ -32,6 +33,16 @@ class SignupController extends GetxController {
 
       // FORM VALIDATION
       if (!signupFormKey.currentState!.validate()) return;
+
+      // PRIVACY POLICY CHECK
+      if (!privacyPolicy.value) {
+        TLoaders.warningSnackBar(
+          title: 'Accept Privacy Polity',
+          message:
+              'In order to create account, you must have to read and accept the Privacy Polity & Terms of use',
+        );
+        return;
+      }
     } catch (error) {
       // SHOW ERROR
       TLoaders.errorSnackBar(title: 'Oh Snap!', message: error.toString());
