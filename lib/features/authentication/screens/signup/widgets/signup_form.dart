@@ -24,7 +24,7 @@ class TSignupForm extends StatelessWidget {
                 // FIRST NAME
                 Expanded(
                     child: TextFormField(
-                  controller: controller.fistName,
+                  controller: controller.firstName,
                   validator: (value) =>
                       TValidator.validateEmptyText('First name', value),
                   expands: false,
@@ -103,7 +103,7 @@ class TSignupForm extends StatelessWidget {
             const SizedBox(height: TSizes.spaceBtwSections),
 
             // TERM&CONDITIONS
-            TTermAndConditionsCheckbox(),
+            const TTermAndConditionsCheckbox(),
 
             const SizedBox(height: TSizes.spaceBtwSections),
 
