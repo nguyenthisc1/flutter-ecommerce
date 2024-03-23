@@ -13,12 +13,12 @@
 			"type": "dart",
             "flutterMode": "debug"       
 		},
-		// {
-		// 	"name": "Flutter-Android",
-		// 	"preLaunchTask": "Flutter-Launch-Android",
-		// 	"type": "dart",
-        //     "flutterMode": "debug"       
-		// },
+		{
+			"name": "Flutter-Android",
+			"preLaunchTask": "Flutter-Launch-Android",
+			"type": "dart",
+            "flutterMode": "debug"       
+		},
 		{
 			"name": "Flutter-Web",
 			"preLaunchTask": "Flutter-Launch-Web",

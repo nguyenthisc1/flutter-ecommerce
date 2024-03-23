@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "833167633397",
+    "project_id": "evocative-nexus-398113",
+    "storage_bucket": "evocative-nexus-398113.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:833167633397:android:38f4c40535cf775db3cebc",
+        "android_client_info": {
+          "package_name": "com.example.ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "833167633397-fstfn0iq2pq0vfe4mouuosjfl4nfu19r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ecommerce",
+            "certificate_hash": "217b08b4d50fc1fe45609facf191651a4b322664"
+          }
+        },
+        {
+          "client_id": "833167633397-t1r3ve4cg0mol6i158eln2bruvkviiji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdxuDKHBFWXg9nQDmh3noRQM6jrRC7oBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "833167633397-t1r3ve4cg0mol6i158eln2bruvkviiji.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "833167633397-84cd0fde2mnrat0lhbl3eh2oma8dmtq0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ecommerce"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

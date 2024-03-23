@@ -12,8 +12,8 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
-      home: const OnboardingScreen(),
-      // home: const AllBrandsScreen(),
+      // home: const OnboardingScreen(),
+      home: const CircularProgressIndicator(color: Colors.white),
       debugShowCheckedModeBanner: false,
     );
   }
