@@ -19,27 +19,19 @@ class SignupScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // TITLE
-            Text(
-              TTexts.signupTitle,
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(
-              height: TSizes.spaceBtwSections,
-            ),
+            Text(TTexts.signupTitle,
+                style: Theme.of(context).textTheme.headlineMedium),
+            const SizedBox(height: TSizes.spaceBtwSections),
 
             // FORM
             const TSignupForm(),
 
-            const SizedBox(
-              height: TSizes.spaceBtwSections,
-            ),
+            const SizedBox(height: TSizes.spaceBtwSections),
 
             // DIVIDER
             TFormDivider(dividerText: TTexts.orSignInWith.capitalize!),
 
-            const SizedBox(
-              height: TSizes.spaceBtwSections,
-            ),
+            const SizedBox(height: TSizes.spaceBtwSections),
 
             // SOCIAL BUTTON
             const TSocialButton()
