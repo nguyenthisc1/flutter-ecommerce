@@ -9,6 +9,7 @@ class SignupController extends GetxController {
   static SignupController get instance => Get.find();
 
   // VARIABLES
+  final hidePassword = true.obs;
   final email = TextEditingController();
   final lastName = TextEditingController();
   final fistName = TextEditingController();
@@ -27,16 +28,10 @@ class SignupController extends GetxController {
       // CHECK INTERNET CONNECTIVITY;
       final isConnected = await NetworkManager.instance.isConnected();
 
-      if (!isConnected) {
-        TFullScreenLoader.stopLoading();
-        return;
-      }
+      if (!isConnected) return;
 
       // FORM VALIDATION
-      if (!signupFormKey.currentState!.validate()) {
-        TFullScreenLoader.stopLoading();
-        return;
-      }
+      if (!signupFormKey.currentState!.validate()) return;
     } catch (error) {
       // SHOW ERROR
       TLoaders.errorSnackBar(title: 'Oh Snap!', message: error.toString());
