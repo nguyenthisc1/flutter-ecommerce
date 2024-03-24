@@ -29,7 +29,7 @@ class SignupController extends GetxController {
     try {
       // START LOADING
       TFullScreenLoader.openLoadingDialog(
-          'We are processing your information', TImages.docerAnimation);
+          'We are processing your information...', TImages.docerAnimation);
 
       // CHECK INTERNET CONNECTIVITY;
       final isConnected = await NetworkManager.instance.isConnected();
@@ -74,23 +74,22 @@ class SignupController extends GetxController {
       final userRepository = Get.put(UserRepository());
       await userRepository.saveUserRecord(newUser);
 
-      // SHOW SUCCESS MESSAGE
+      // REMOVE LOADER
+      TFullScreenLoader.stopLoading();
+
+      // // SHOW SUCCESS MESSAGE
       TLoaders.successSnackBar(
           title: 'Congratulation',
           message: 'Your account has been created! Verify email to continue');
 
       // MOVE TO VERIFY EMAIL
-      await Get.to(() => const VerifyEmailScreen());
+      Get.to(() => VerifyEmailScreen(email: email.text.trim()));
     } catch (error) {
       // REMOVE LOADER
       TFullScreenLoader.stopLoading();
 
       // SHOW ERROR
       TLoaders.errorSnackBar(title: 'Oh Snap!', message: error.toString());
-    } finally {
-      // REMOVE LOADER
-      TFullScreenLoader.stopLoading();
     }
-    ;
   }
 }

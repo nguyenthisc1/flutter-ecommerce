@@ -3,6 +3,7 @@ import 'package:ecommerce/utils/constants/sizes.dart';
 import 'package:ecommerce/utils/constants/text_strings.dart';
 import 'package:ecommerce/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class SuccessScreen extends StatelessWidget {
   const SuccessScreen(
@@ -26,8 +27,9 @@ class SuccessScreen extends StatelessWidget {
           child: Column(
             children: [
               // IMAGE
-              Image(
-                image: AssetImage(image),
+
+              Lottie.asset(
+                image,
                 width: THelperFunctions.screenWidth() * 0.6,
               ),
 
