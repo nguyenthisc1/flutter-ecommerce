@@ -6,7 +6,6 @@ import 'package:ecommerce/utils/constants/image_strings.dart';
 import 'package:ecommerce/utils/helpers/network_manager.dart';
 import 'package:ecommerce/utils/popups/full_screen_loader.dart';
 import 'package:ecommerce/utils/popups/loaders.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
