@@ -10,13 +10,16 @@ import 'package:ecommerce/utils/popups/full_screen_loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
   final _auth = FirebaseAuth.instance;
+  final bool kIsWeb = const bool.fromEnvironment('dart.library.js_util');
 
   // VARIABLES
   final deviceStore = GetStorage();
@@ -71,6 +74,38 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
+  // SIGN-IN WITH GOOGLE
+  Future<UserCredential> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? userAccount = await GoogleSignIn(
+              clientId: kIsWeb
+                  ? dotenv.env['GOOGLE_WEB_CLIENT_ID']
+                  : dotenv.env['GOOGLE_APP_CLIENT_ID'])
+          .signIn();
+
+      // OBTAIN THE AUTH DETAILS FROM THE REQUEST
+      final GoogleSignInAuthentication? googleAuth =
+          await userAccount?.authentication;
+
+      // CREATE A NEW CREDENTIAL
+      final credentials = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+
+      // ONCE SIGN IN, RETURN THE CREDENTIAL
+      return await _auth.signInWithCredential(credentials);
+    } on TFirebaseAuthException catch (error) {
+      throw TFirebaseAuthException(error.code).message;
+    } on TFirebaseException catch (error) {
+      throw TFirebaseException(error.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (error) {
+      throw TPlatformException(error.code).message;
+    } catch (error) {
+      throw 'Something went wrong, Please try again \n $error';
+    }
+  }
+
   // REGISTER
   Future<UserCredential> registerWithEmailAndPassword(
       String email, String password) async {
@@ -110,6 +145,7 @@ class AuthenticationRepository extends GetxController {
   // LOGOUT
   Future<void> logout() async {
     try {
+      // await GoogleSignIn().signOut();
       await FirebaseAuth.instance.signOut();
       Get.offAll(() => const LoginScreen());
     } on TFirebaseAuthException catch (error) {

@@ -1,4 +1,5 @@
 import 'package:ecommerce/data/repositories/authentication_repository.dart';
+import 'package:ecommerce/features/personalization/controllers/user_controller.dart';
 import 'package:ecommerce/utils/constants/image_strings.dart';
 import 'package:ecommerce/utils/helpers/network_manager.dart';
 import 'package:ecommerce/utils/popups/full_screen_loader.dart';
@@ -16,6 +17,7 @@ class LoginController extends GetxController {
   final email = TextEditingController();
   final password = TextEditingController();
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  final userController = Get.put(UserController());
 
   @override
   void onInit() {
@@ -70,6 +72,43 @@ class LoginController extends GetxController {
 
       // SHOW ERROR
       TLoaders.errorSnackBar(title: 'Oh Snap!', message: error.toString());
+    }
+  }
+
+  // SIGN-IN WITH GOOGLE
+  Future<void> googleSignIn() async {
+    try {
+      // START LOADING
+      TFullScreenLoader.openLoadingDialog(
+          'Logging you in...', TImages.docerAnimation);
+
+      // CHECK INTERNET CONNECTIVITY;
+      final isConnected = await NetworkManager.instance.isConnected();
+
+      if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // GOOGLE AUTHENTICATION
+      final userCredentials =
+          await AuthenticationRepository.instance.signInWithGoogle();
+
+      // SAVE USER RECORD
+      await userController.saveUserRecord(userCredentials);
+
+      // REMOVE LOADER
+      TFullScreenLoader.stopLoading();
+
+      // REDIRECT
+      AuthenticationRepository.instance.screenRedirect();
+    } catch (error) {
+      // REMOVE LOADER
+      TFullScreenLoader.stopLoading();
+
+      // SHOW ERROR
+      TLoaders.errorSnackBar(title: 'Oh snap!', message: error.toString());
+      print(error.toString());
     }
   }
 }
