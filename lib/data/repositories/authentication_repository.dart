@@ -6,7 +6,6 @@ import 'package:ecommerce/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:ecommerce/utils/exceptions/firebase_exceptions.dart';
 import 'package:ecommerce/utils/exceptions/format_exceptions.dart';
 import 'package:ecommerce/utils/exceptions/platform_exceptions.dart';
-import 'package:ecommerce/utils/popups/full_screen_loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -102,7 +101,7 @@ class AuthenticationRepository extends GetxController {
     } on PlatformException catch (error) {
       throw TPlatformException(error.code).message;
     } catch (error) {
-      throw 'Something went wrong, Please try again \n $error';
+      throw 'Something went wrong, Please try again';
     }
   }
 
@@ -129,6 +128,23 @@ class AuthenticationRepository extends GetxController {
   Future<void> sendEmailVerification() async {
     try {
       return await _auth.currentUser?.sendEmailVerification();
+    } on TFirebaseAuthException catch (error) {
+      throw TFirebaseAuthException(error.code).message;
+    } on TFirebaseException catch (error) {
+      throw TFirebaseException(error.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (error) {
+      throw TPlatformException(error.code).message;
+    } catch (error) {
+      throw 'Something went wrong, Please try again';
+    }
+  }
+
+  // FORGET PASSWORD
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      return await _auth.sendPasswordResetEmail(email: email);
     } on TFirebaseAuthException catch (error) {
       throw TFirebaseAuthException(error.code).message;
     } on TFirebaseException catch (error) {
