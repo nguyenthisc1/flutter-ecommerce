@@ -108,7 +108,6 @@ class LoginController extends GetxController {
 
       // SHOW ERROR
       TLoaders.errorSnackBar(title: 'Oh snap!', message: error.toString());
-      print(error.toString());
     }
   }
 }

@@ -1,10 +1,13 @@
 import 'package:ecommerce/common/widgets/appbar/appbar.dart';
 import 'package:ecommerce/common/widgets/image/circular_image.dart';
 import 'package:ecommerce/common/widgets/texts/section_heading.dart';
+import 'package:ecommerce/features/personalization/controllers/user_controller.dart';
+import 'package:ecommerce/features/personalization/screens/profile/wigets/change_name.dart';
 import 'package:ecommerce/features/personalization/screens/profile/wigets/profile_meru.dart';
 import 'package:ecommerce/utils/constants/image_strings.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -12,6 +15,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Scaffold(
       appBar: const TAppbar(
         showBackArrow: true,
@@ -50,13 +54,13 @@ class ProfileScreen extends StatelessWidget {
 
             TProfileMenu(
               title: "Name",
-              value: "Thi Nguyn",
-              onPressed: () {},
+              value: controller.user.value.fullName,
+              onPressed: () => Get.to(() => const ChangeName()),
             ),
 
             TProfileMenu(
               title: "Username",
-              value: "Thi Nguyn",
+              value: controller.user.value.userName,
               onPressed: () {},
             ),
 
@@ -66,18 +70,18 @@ class ProfileScreen extends StatelessWidget {
 
             TProfileMenu(
               title: "User ID",
-              value: "123456",
+              value: controller.user.value.id,
               icon: Iconsax.copy,
               onPressed: () {},
             ),
             TProfileMenu(
               title: "E-mail",
-              value: "nguyenthisc1@gmail.com",
+              value: controller.user.value.email,
               onPressed: () {},
             ),
             TProfileMenu(
               title: "Phone number",
-              value: "+841237860",
+              value: controller.user.value.phoneNumber,
               onPressed: () {},
             ),
             TProfileMenu(

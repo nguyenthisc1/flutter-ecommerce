@@ -3,14 +3,40 @@ import 'package:ecommerce/features/personalization/models/user_model.dart';
 import 'package:ecommerce/utils/popups/loaders.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
 
 class UserController extends GetxController {
   static UserController get instance => Get.find();
 
+  final profileLoading = false.obs;
+  Rx<UserModel> user = UserModel.empty().obs;
   final userRepository = Get.put(UserRepository());
 
-  // SAVE USER RECORD ANY REGISTRATION PROVIDER
+  @override
+  void onInit() {
+    super.onInit();
+    fetchUserRecord();
+  }
+
+  // FETCH USER RECORD
+  Future<void> fetchUserRecord() async {
+    try {
+      profileLoading.value = true;
+      final user = await userRepository.fetchUserDetails();
+
+      this.user(user);
+      profileLoading.value = false;
+    } catch (error) {
+      user(UserModel.empty());
+      TLoaders.warningSnackBar(
+          title: 'Fetching user failed',
+          message:
+              'Something went wrong while saving your Information. You can re-save your data in your Profile. \n $error');
+    } finally {
+      profileLoading.value = false;
+    }
+  }
+
+// SAVE USER RECORD ANY REGISTRATION PROVIDER
   Future<void> saveUserRecord(UserCredential? userCredential) async {
     try {
       if (userCredential != null) {
@@ -38,7 +64,10 @@ class UserController extends GetxController {
       TLoaders.warningSnackBar(
           title: 'Data not saved',
           message:
-              'Something went wrong while saving your Information. You can re-save your data in your Profile.');
+              'Something went wrong while saving your Information. You can re-save your data in your Profile. \n $error');
     }
   }
+
+  // CHANGE NAME USER
+  Future<void> changenameUser() async {}
 }

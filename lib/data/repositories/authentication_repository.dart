@@ -18,6 +18,11 @@ import 'package:google_sign_in/google_sign_in.dart';
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
   final _auth = FirebaseAuth.instance;
+
+  // GET AUTHENTICATION USER DATA
+  User? get authUser => _auth.currentUser;
+
+  // CHECK DEVICE WEB
   final bool kIsWeb = const bool.fromEnvironment('dart.library.js_util');
 
   // VARIABLES
