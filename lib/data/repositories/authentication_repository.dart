@@ -1,3 +1,4 @@
+import 'package:ecommerce/data/user/user_repository.dart';
 import 'package:ecommerce/features/authentication/screens/login/login.dart';
 import 'package:ecommerce/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:ecommerce/features/authentication/screens/signup/verify_email.dart';
@@ -169,6 +170,47 @@ class AuthenticationRepository extends GetxController {
       // await GoogleSignIn().signOut();
       await FirebaseAuth.instance.signOut();
       Get.offAll(() => const LoginScreen());
+    } on TFirebaseAuthException catch (error) {
+      throw TFirebaseAuthException(error.code).message;
+    } on TFirebaseException catch (error) {
+      throw TFirebaseException(error.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (error) {
+      throw TPlatformException(error.code).message;
+    } catch (error) {
+      throw 'Something went wrong, Please try again';
+    }
+  }
+
+  // DELETE ACCOUNT
+  Future<void> deleteAccount() async {
+    try {
+      await UserRepository.instance.removeUserRecord(_auth.currentUser!.uid);
+      await _auth.currentUser?.delete();
+    } on TFirebaseAuthException catch (error) {
+      throw TFirebaseAuthException(error.code).message;
+    } on TFirebaseException catch (error) {
+      throw TFirebaseException(error.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (error) {
+      throw TPlatformException(error.code).message;
+    } catch (error) {
+      throw 'Something went wrong, Please try again';
+    }
+  }
+
+  // RE-AUTHENTICATE BEFORE DELETING
+  Future<void> reAuthenticateEmailAndPassword(
+      String email, String password) async {
+    try {
+      // CREATE A CREDENTIAL
+      AuthCredential credential =
+          EmailAuthProvider.credential(email: email, password: password);
+
+      // RE-AUTHENTICATE
+      await _auth.currentUser!.reauthenticateWithCredential(credential);
     } on TFirebaseAuthException catch (error) {
       throw TFirebaseAuthException(error.code).message;
     } on TFirebaseException catch (error) {
