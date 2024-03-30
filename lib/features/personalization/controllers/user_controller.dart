@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:ecommerce/data/repositories/authentication_repository.dart';
 import 'package:ecommerce/data/user/user_repository.dart';
 import 'package:ecommerce/features/authentication/screens/login/login.dart';
@@ -13,6 +11,7 @@ import 'package:ecommerce/utils/popups/loaders.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UserController extends GetxController {
   static UserController get instance => Get.find();
@@ -53,33 +52,36 @@ class UserController extends GetxController {
 
 // SAVE USER RECORD ANY REGISTRATION PROVIDER
   Future<void> saveUserRecord(UserCredential? userCredential) async {
-    try {
-      if (userCredential != null) {
-        // CONVERT NAME TO FIRST AND LAST NAME
-        final nameParts =
-            UserModel.nameParts(userCredential.user!.displayName ?? '');
-        final username =
-            UserModel.generateUserName(userCredential.user!.displayName ?? '');
+    // REFRESH USER RECORD
+    await fetchUserRecord();
+    if (user.value.id.isNotEmpty) {
+      try {
+        if (userCredential != null) {
+          // CONVERT NAME TO FIRST AND LAST NAME
+          final nameParts =
+              UserModel.nameParts(userCredential.user!.displayName ?? '');
+          final username = UserModel.generateUserName(
+              userCredential.user!.displayName ?? '');
 
-        // MAP DATA
-        final user = UserModel(
-            id: userCredential.user!.uid,
-            firstName: nameParts[0],
-            lastName:
-                nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
-            userName: username,
-            email: userCredential.user!.email ?? '',
-            phoneNumber: userCredential.user!.phoneNumber ?? '',
-            profilePicture: userCredential.user!.photoURL ?? '');
-
-        // SAVE USER
-        await userRepository.saveUserRecord(user);
+          // MAP DATA
+          final user = UserModel(
+              id: userCredential.user!.uid,
+              firstName: nameParts[0],
+              lastName:
+                  nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
+              userName: username,
+              email: userCredential.user!.email ?? '',
+              phoneNumber: userCredential.user!.phoneNumber ?? '',
+              profilePicture: userCredential.user!.photoURL ?? '');
+          // SAVE USER
+          await userRepository.saveUserRecord(user);
+        }
+      } catch (error) {
+        TLoaders.warningSnackBar(
+            title: 'Data not saved',
+            message:
+                'Something went wrong while saving your Information. You can re-save your data in your Profile. \n $error');
       }
-    } catch (error) {
-      TLoaders.warningSnackBar(
-          title: 'Data not saved',
-          message:
-              'Something went wrong while saving your Information. You can re-save your data in your Profile. \n $error');
     }
   }
 
@@ -168,6 +170,38 @@ class UserController extends GetxController {
       // SHOW ERROR
       TLoaders.warningSnackBar(
           title: 'Verify fail!', message: 'Something went wrong. \n $error');
+    }
+  }
+
+  // UPLOAD PROFILE IMAGE
+  Future<void> uploadUserProfilePicture() async {
+    try {
+      final image = await ImagePicker().pickImage(
+          source: ImageSource.gallery,
+          imageQuality: 70,
+          maxHeight: 512,
+          maxWidth: 512);
+
+          
+      if (image != null) {
+        // UPLOAD IMAGE
+        final imageUrl =
+            await userRepository.uploadImage('Users/Images/Profile/', image);
+
+        // UPDATE USER IMAGE RECORD
+        Map<String, dynamic> json = {'ProfilePicture': imageUrl};
+        await userRepository.updateSingleFieldUser(json);
+
+        user.value.profilePicture = imageUrl;
+        user.refresh();
+
+        TLoaders.successSnackBar(
+            title: 'Congratulation',
+            message: 'Your profile image has been updated!');
+      }
+    } catch (error) {
+      // SHOW ERROR
+      TLoaders.warningSnackBar(title: 'Upload Image fail!', message: ' $error');
     }
   }
 }
