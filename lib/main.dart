@@ -1,5 +1,5 @@
 import 'package:ecommerce/app.dart';
-import 'package:ecommerce/data/repositories/authentication_repository.dart';
+import 'package:ecommerce/data/repositories/authentication/authentication_repository.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
