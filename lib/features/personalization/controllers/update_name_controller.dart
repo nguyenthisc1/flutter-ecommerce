@@ -1,4 +1,4 @@
-import 'package:ecommerce/data/user/user_repository.dart';
+import 'package:ecommerce/data/repositories/user/user_repository.dart';
 import 'package:ecommerce/features/personalization/controllers/user_controller.dart';
 import 'package:ecommerce/features/personalization/screens/profile/profile.dart';
 import 'package:ecommerce/utils/constants/image_strings.dart';

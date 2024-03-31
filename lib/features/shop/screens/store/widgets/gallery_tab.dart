@@ -2,6 +2,7 @@ import 'package:ecommerce/common/widgets/brands/brand_show_case.dart';
 import 'package:ecommerce/common/widgets/layout/grid_layout.dart';
 import 'package:ecommerce/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:ecommerce/common/widgets/texts/section_heading.dart';
+import 'package:ecommerce/features/shop/models/category_model.dart';
 import 'package:ecommerce/utils/constants/image_strings.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,10 @@ import 'package:flutter/material.dart';
 class TGalleryTab extends StatelessWidget {
   const TGalleryTab({
     super.key,
+    required this.category,
   });
+
+  final CategoryModel category;
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +25,9 @@ class TGalleryTab extends StatelessWidget {
           padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Column(children: [
             // BRANDS
-            const TBrandShowcase(images: [
-              TImages.productImage1,
-              TImages.productImage10,
-              TImages.productImage11
-            ]),
+            const TBrandShowcase(images: [TImages.productImage1, TImages.productImage10, TImages.productImage11]),
 
-            const TBrandShowcase(images: [
-              TImages.productImage1,
-              TImages.productImage10,
-              TImages.productImage11
-            ]),
+            const TBrandShowcase(images: [TImages.productImage1, TImages.productImage10, TImages.productImage11]),
 
             // PRODUCTS
             TSectionHeading(
@@ -40,9 +36,7 @@ class TGalleryTab extends StatelessWidget {
             ),
             const SizedBox(height: TSizes.spaceBtwItems),
 
-            TGridLayout(
-                itemCount: 4,
-                itemBuilder: (_, index) => const TProductCardVertical()),
+            TGridLayout(itemCount: 4, itemBuilder: (_, index) => const TProductCardVertical()),
             const SizedBox(height: TSizes.spaceBtwSections),
           ]),
         )

@@ -52,7 +52,10 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: TSizes.spaceBtwItems),
 
                 // CATEGORIES
-                THomeCategories(),
+                Padding(
+                  padding: EdgeInsets.only(left: TSizes.defaultSpace),
+                  child: THomeCategories(),
+                ),
 
                 SizedBox(height: TSizes.spaceBtwSections),
               ]),
@@ -63,21 +66,12 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(TSizes.defaultSpace),
                 child: Column(
                   children: [
-                    const TPromoSlider(
-                      banners: [
-                        TImages.promoBanner1,
-                        TImages.promoBanner2,
-                        TImages.promoBanner3,
-                      ],
-                    ),
+                    const TPromoSlider(),
 
                     const SizedBox(height: TSizes.spaceBtwSections),
 
                     // HEADING
-                    TSectionHeading(
-                        title: "Popular Products",
-                        onPressed: () =>
-                            Get.to(() => const AllProductsScreen())),
+                    TSectionHeading(title: "Popular Products", onPressed: () => Get.to(() => const AllProductsScreen())),
 
                     const SizedBox(height: TSizes.spaceBtwItems),
 

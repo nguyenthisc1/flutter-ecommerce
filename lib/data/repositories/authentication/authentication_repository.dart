@@ -1,4 +1,4 @@
-import 'package:ecommerce/data/user/user_repository.dart';
+import 'package:ecommerce/data/repositories/user/user_repository.dart';
 import 'package:ecommerce/features/authentication/screens/login/login.dart';
 import 'package:ecommerce/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:ecommerce/features/authentication/screens/signup/verify_email.dart';

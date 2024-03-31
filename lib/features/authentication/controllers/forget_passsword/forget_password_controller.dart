@@ -1,4 +1,4 @@
-import 'package:ecommerce/data/repositories/authentication_repository.dart';
+import 'package:ecommerce/data/repositories/authentication/authentication_repository.dart';
 import 'package:ecommerce/features/authentication/screens/password_configuration/reset_password.dart';
 import 'package:ecommerce/utils/constants/image_strings.dart';
 import 'package:ecommerce/utils/helpers/network_manager.dart';

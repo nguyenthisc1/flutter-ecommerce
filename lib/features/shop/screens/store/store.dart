@@ -4,10 +4,12 @@ import 'package:ecommerce/common/widgets/brands/brand_card.dart';
 import 'package:ecommerce/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:ecommerce/common/widgets/layout/grid_layout.dart';
 import 'package:ecommerce/common/widgets/texts/section_heading.dart';
+import 'package:ecommerce/features/shop/controllers/category_controller.dart';
 import 'package:ecommerce/features/shop/screens/store/widgets/gallery_tab.dart';
 import 'package:ecommerce/utils/constants/colors.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
 import 'package:ecommerce/utils/helpers/helper_functions.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class StoreScreen extends StatelessWidget {
@@ -16,12 +18,12 @@ class StoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
+    final categories = CategoryController.instance.featuredCategories;
     return DefaultTabController(
-      length: 5,
+      length: categories.length,
       child: Scaffold(
         appBar: TAppbar(
-          title:
-              Text('Store', style: Theme.of(context).textTheme.headlineMedium),
+          title: Text('Store', style: Theme.of(context).textTheme.headlineMedium),
           actions: [
             TCartCounterIcon(
               onPressed: () {},
@@ -39,8 +41,7 @@ class StoreScreen extends StatelessWidget {
                 backgroundColor: dark ? TColors.black : TColors.white,
                 expandedHeight: 440,
                 flexibleSpace: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: TSizes.defaultSpace, vertical: 50),
+                  padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace, vertical: 50),
                   child: ListView(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -79,24 +80,20 @@ class StoreScreen extends StatelessWidget {
                     isScrollable: true,
                     indicatorColor: TColors.primary,
                     labelColor: dark ? TColors.white : TColors.primary,
-                    tabs: const [
-                      Tab(child: Text('Sports')),
-                      Tab(child: Text('Sports 2')),
-                      Tab(child: Text('Sports 3')),
-                      Tab(child: Text('Sports 4')),
-                      Tab(child: Text('Sports 5'))
-                    ]),
+                    tabs: categories
+                        .map((category) => Tab(
+                              child: Text(category.name),
+                            ))
+                        .toList()),
               ),
             ];
           },
-          body: const TabBarView(
-            children: [
-              TGalleryTab(),
-              TGalleryTab(),
-              TGalleryTab(),
-              TGalleryTab(),
-              TGalleryTab(),
-            ],
+          body: TabBarView(
+            children: categories
+                .map((category) => TGalleryTab(
+                      category: category,
+                    ))
+                .toList(),
           ),
         ),
       ),

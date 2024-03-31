@@ -1,5 +1,5 @@
-import 'package:ecommerce/data/repositories/authentication_repository.dart';
-import 'package:ecommerce/data/user/user_repository.dart';
+import 'package:ecommerce/data/repositories/authentication/authentication_repository.dart';
+import 'package:ecommerce/data/repositories/user/user_repository.dart';
 import 'package:ecommerce/features/authentication/screens/signup/verify_email.dart';
 import 'package:ecommerce/features/personalization/models/user_model.dart';
 import 'package:ecommerce/utils/constants/image_strings.dart';

@@ -3,8 +3,9 @@ import 'package:ecommerce/common/widgets/custom_shapes/containers/primary_header
 import 'package:ecommerce/common/widgets/list_tile/setting_menu_tile.dart';
 import 'package:ecommerce/common/widgets/list_tile/user_profile_tile.dart';
 import 'package:ecommerce/common/widgets/texts/section_heading.dart';
-import 'package:ecommerce/data/repositories/authentication_repository.dart';
+import 'package:ecommerce/data/repositories/authentication/authentication_repository.dart';
 import 'package:ecommerce/features/personalization/screens/address/address.dart';
+import 'package:ecommerce/features/personalization/screens/load_data/load_data.dart';
 import 'package:ecommerce/features/personalization/screens/profile/profile.dart';
 import 'package:ecommerce/features/shop/screens/checkout/checkout.dart';
 import 'package:ecommerce/features/shop/screens/order/order.dart';
@@ -30,15 +31,11 @@ class SettingsScreen extends StatelessWidget {
               TAppbar(
                   title: Text(
                 'Account',
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineMedium!
-                    .apply(color: TColors.white),
+                style: Theme.of(context).textTheme.headlineMedium!.apply(color: TColors.white),
               )),
 
               // USER PROFILE CARD
-              TUserProfileTile(
-                  onPressed: () => Get.to(() => const ProfileScreen())),
+              TUserProfileTile(onPressed: () => Get.to(() => const ProfileScreen())),
 
               const SizedBox(height: TSizes.spaceBtwSections),
             ],
@@ -103,10 +100,12 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: TSizes.spaceBtwItems),
 
-                const TSettingMenuTile(
-                    icon: Iconsax.document_upload,
-                    title: 'Load Data',
-                    subTitle: 'Upload data to your Cloud Firebase'),
+                TSettingMenuTile(
+                  icon: Iconsax.document_upload,
+                  title: 'Load Data',
+                  subTitle: 'Upload data to your Cloud Firebase',
+                  onTap: () => Get.to(() => const LoadDataScreen()),
+                ),
 
                 TSettingMenuTile(
                   icon: Iconsax.location,
@@ -115,17 +114,9 @@ class SettingsScreen extends StatelessWidget {
                   trailing: Switch(value: true, onChanged: (value) {}),
                 ),
 
-                TSettingMenuTile(
-                    icon: Iconsax.security_user,
-                    title: 'Safe Mode',
-                    subTitle: 'Search result is safe for all ages',
-                    trailing: Switch(value: false, onChanged: (value) {})),
+                TSettingMenuTile(icon: Iconsax.security_user, title: 'Safe Mode', subTitle: 'Search result is safe for all ages', trailing: Switch(value: false, onChanged: (value) {})),
 
-                TSettingMenuTile(
-                    icon: Iconsax.image,
-                    title: 'HD Image Quality',
-                    subTitle: 'Set image quality to be seen',
-                    trailing: Switch(value: false, onChanged: (value) {})),
+                TSettingMenuTile(icon: Iconsax.image, title: 'HD Image Quality', subTitle: 'Set image quality to be seen', trailing: Switch(value: false, onChanged: (value) {})),
 
                 // LOGOUT BUTTON
                 const SizedBox(height: TSizes.spaceBtwSections),
