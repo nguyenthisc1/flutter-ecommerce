@@ -9,7 +9,6 @@ import 'package:ecommerce/features/shop/screens/store/widgets/gallery_tab.dart';
 import 'package:ecommerce/utils/constants/colors.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
 import 'package:ecommerce/utils/helpers/helper_functions.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class StoreScreen extends StatelessWidget {

@@ -2,7 +2,6 @@ import 'package:ecommerce/common/widgets/appbar/appbar.dart';
 import 'package:ecommerce/common/widgets/texts/section_heading.dart';
 import 'package:ecommerce/features/personalization/screens/load_data/widgets/upload_action_item.dart';
 import 'package:ecommerce/features/shop/controllers/upload_data_controller.dart';
-import 'package:ecommerce/utils/constants/colors.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
