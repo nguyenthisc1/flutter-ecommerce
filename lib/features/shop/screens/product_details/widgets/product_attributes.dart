@@ -35,7 +35,7 @@ class TProductAttributes extends StatelessWidget {
                       Row(
                         children: [
                           const TProductTitleText(
-                              title: 'Price : ', smaillSize: true),
+                              title: 'Price : ', smallSize: true),
                           const SizedBox(width: TSizes.spaceBtwItems),
                           Row(
                             children: [
@@ -59,7 +59,7 @@ class TProductAttributes extends StatelessWidget {
                       Row(
                         children: [
                           const TProductTitleText(
-                              title: 'Stock: ', smaillSize: true),
+                              title: 'Stock: ', smallSize: true),
                           Row(
                             children: [
                               Text('In Stock',
@@ -76,7 +76,7 @@ class TProductAttributes extends StatelessWidget {
               ),
               const TProductTitleText(
                 title: 'This is the Description of the product',
-                smaillSize: true,
+                smallSize: true,
                 maxLines: 4,
               )
             ],

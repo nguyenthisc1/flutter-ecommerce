@@ -1,4 +1,4 @@
-import 'package:ecommerce/common/shimmers/shimmer_effect.dart';
+import 'package:ecommerce/common/widgets/shimmers/shimmer_effect.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 

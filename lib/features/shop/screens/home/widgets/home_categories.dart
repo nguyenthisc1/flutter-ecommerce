@@ -1,4 +1,4 @@
-import 'package:ecommerce/common/shimmers/category_shimmer.dart';
+import 'package:ecommerce/common/widgets/shimmers/category_shimmer.dart';
 import 'package:ecommerce/common/widgets/image_text_widgets/vertical_image_text.dart';
 import 'package:ecommerce/features/shop/controllers/category_controller.dart';
 import 'package:ecommerce/features/shop/screens/sub_category/sub_category.dart';

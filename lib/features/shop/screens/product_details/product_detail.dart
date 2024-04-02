@@ -1,4 +1,5 @@
 import 'package:ecommerce/common/widgets/texts/section_heading.dart';
+import 'package:ecommerce/features/shop/models/product_model.dart';
 import 'package:ecommerce/features/shop/screens/product_details/widgets/bottom_add_to_card_widget.dart';
 import 'package:ecommerce/features/shop/screens/product_details/widgets/product_attributes.dart';
 import 'package:ecommerce/features/shop/screens/product_details/widgets/product_detail_image_slider.dart';
@@ -12,7 +13,9 @@ import 'package:iconsax/iconsax.dart';
 import 'package:readmore/readmore.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  const ProductDetailScreen({Key? key}) : super(key: key);
+  const ProductDetailScreen({Key? key, required this.product}) : super(key: key);
+
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +29,7 @@ class ProductDetailScreen extends StatelessWidget {
 
             // PRODUCT DETAILS
             Padding(
-              padding: const EdgeInsets.only(
-                  right: TSizes.defaultSpace,
-                  left: TSizes.defaultSpace,
-                  bottom: TSizes.defaultSpace),
+              padding: const EdgeInsets.only(right: TSizes.defaultSpace, left: TSizes.defaultSpace, bottom: TSizes.defaultSpace),
               child: Column(
                 children: [
                   // RATING & SHARE BUTTON
@@ -45,14 +45,12 @@ class ProductDetailScreen extends StatelessWidget {
                   // CHECKOUT BUTTON
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
-                        onPressed: () {}, child: const Text('Checkout')),
+                    child: ElevatedButton(onPressed: () {}, child: const Text('Checkout')),
                   ),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   // DESCRIPTION
-                  const TSectionHeading(
-                      title: 'Description', showActionButton: false),
+                  const TSectionHeading(title: 'Description', showActionButton: false),
                   const SizedBox(height: TSizes.spaceBtwItems),
                   const ReadMoreText(
                     'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium quasi odit quod non eum optio repudiandae praesentium ratione perspiciatis rerum sunt explicabo aspernatur possimus maxime labore ipsa numquam, ducimus est.',
@@ -60,10 +58,8 @@ class ProductDetailScreen extends StatelessWidget {
                     trimMode: TrimMode.Line,
                     trimCollapsedText: 'Show more',
                     trimExpandedText: 'Less',
-                    moreStyle:
-                        TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                    lessStyle:
-                        TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    lessStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                   ),
 
                   // REVIEWS
@@ -77,8 +73,7 @@ class ProductDetailScreen extends StatelessWidget {
                         showActionButton: false,
                       ),
                       IconButton(
-                          onPressed: () =>
-                              Get.to(() => const ProductReviewsScreen()),
+                          onPressed: () => Get.to(() => const ProductReviewsScreen()),
                           icon: const Icon(
                             Iconsax.arrow_right_3,
                             size: 18,

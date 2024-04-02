@@ -1,5 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:ecommerce/common/shimmers/shimmer_effect.dart';
+import 'package:ecommerce/common/widgets/shimmers/shimmer_effect.dart';
 import 'package:ecommerce/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:ecommerce/common/widgets/image/rounded_image.dart';
 import 'package:ecommerce/features/shop/controllers/banner_controller.dart';

@@ -2,6 +2,8 @@ import 'package:ecommerce/common/widgets/appbar/appbar.dart';
 import 'package:ecommerce/common/widgets/icon/circular_icon.dart';
 import 'package:ecommerce/common/widgets/layout/grid_layout.dart';
 import 'package:ecommerce/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:ecommerce/common/widgets/shimmers/vertial_product_shimmer.dart';
+import 'package:ecommerce/features/shop/controllers/product_controller.dart';
 import 'package:ecommerce/features/shop/screens/home/home.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
@@ -28,9 +30,16 @@ class FavoriteScreen extends StatelessWidget {
           padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             children: [
-              TGridLayout(
-                  itemCount: 4,
-                  itemBuilder: (_, index) => const TProductCardVertical())
+              Obx(() {
+                if (ProductController.instance.isLoading.value) return const TVertialProductShimmer();
+
+                if (ProductController.instance.featuredProducts.isEmpty) return Center(child: Text('No Data Found!', style: Theme.of(context).textTheme.bodyMedium));
+
+                return TGridLayout(
+                  itemCount: ProductController.instance.featuredProducts.length,
+                  itemBuilder: (_, index) => TProductCardVertical(product: ProductController.instance.featuredProducts[index]),
+                );
+              })
             ],
           ),
         ),

@@ -36,7 +36,7 @@ class TGalleryTab extends StatelessWidget {
             ),
             const SizedBox(height: TSizes.spaceBtwItems),
 
-            TGridLayout(itemCount: 4, itemBuilder: (_, index) => const TProductCardVertical()),
+            // TGridLayout(itemCount: 4, itemBuilder: (_, index) => const TProductCardVertical()),
             const SizedBox(height: TSizes.spaceBtwSections),
           ]),
         )

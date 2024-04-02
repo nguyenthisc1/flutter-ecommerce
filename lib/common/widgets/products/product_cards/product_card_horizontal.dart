@@ -82,7 +82,7 @@ class TProductCardHorizontal extends StatelessWidget {
                     children: [
                       TProductTitleText(
                           title: 'Green Nike Half Sleeves Shirt',
-                          smaillSize: true),
+                          smallSize: true),
                       SizedBox(height: TSizes.spaceBtwItems / 2),
                       TBrandTitleWithVerifiedIcon(title: 'Nike')
                     ],

@@ -4,13 +4,13 @@ class TProductTitleText extends StatelessWidget {
   const TProductTitleText({
     super.key,
     required this.title,
-    this.smaillSize = false,
+    this.smallSize = false,
     this.maxLines = 2,
     this.textAlign = TextAlign.left,
   });
 
   final String title;
-  final bool smaillSize;
+  final bool smallSize;
   final int maxLines;
   final TextAlign? textAlign;
 
@@ -18,7 +18,7 @@ class TProductTitleText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: smaillSize
+      style: smallSize
           ? Theme.of(context).textTheme.labelLarge
           : Theme.of(context).textTheme.titleSmall,
       overflow: TextOverflow.ellipsis,
