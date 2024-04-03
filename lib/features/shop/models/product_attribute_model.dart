@@ -7,6 +7,9 @@ class ProductAttributeModel {
     this.values,
   });
 
+  // EMPTY HELPER FUNCTION
+  static ProductAttributeModel empty() => ProductAttributeModel(name: '', values: []);
+
   // TO JSON FORMAT
   toJson() {
     return {

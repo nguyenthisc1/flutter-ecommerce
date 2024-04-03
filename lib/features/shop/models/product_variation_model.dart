@@ -7,7 +7,7 @@ class ProductVariationModel {
   double price;
   double salePrice;
   int stock;
-  Map<String, String> attributeValue;
+  Map<String, String> attributeValues;
 
   ProductVariationModel({
     required this.id,
@@ -17,11 +17,11 @@ class ProductVariationModel {
     this.price = 0.0,
     this.salePrice = 0.0,
     this.stock = 0,
-    required this.attributeValue,
+    required this.attributeValues,
   });
 
   // EMPTY HELPER FUNCTION
-  static ProductVariationModel empty() => ProductVariationModel(id: '', attributeValue: {});
+  static ProductVariationModel empty() => ProductVariationModel(id: '', attributeValues: {});
 
   // TO JSON FORMAT
   toJson() {
@@ -33,7 +33,7 @@ class ProductVariationModel {
       'Price': price,
       'SalePrice': salePrice,
       'Stock': stock,
-      'AttributeValue': attributeValue,
+      'AttributeValues': attributeValues,
     };
   }
 
@@ -48,7 +48,7 @@ class ProductVariationModel {
       price: double.parse((data['Price'] ?? 0.0).toString()),
       salePrice: double.parse((data['SalePrice'] ?? 0.0).toString()),
       stock: data['Stock'] ?? 0,
-      attributeValue: Map<String, String>.from(data['AttributeValue']),
+      attributeValues: Map<String, String>.from(data['AttributeValues']),
     );
   }
 }

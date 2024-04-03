@@ -6,6 +6,7 @@ import 'package:ecommerce/features/shop/screens/product_details/widgets/product_
 import 'package:ecommerce/features/shop/screens/product_details/widgets/product_meta_data.dart';
 import 'package:ecommerce/features/shop/screens/product_details/widgets/product_rating_share.dart';
 import 'package:ecommerce/features/shop/screens/product_reviews/product_reviews.dart';
+import 'package:ecommerce/utils/constants/enums.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,11 +37,11 @@ class ProductDetailScreen extends StatelessWidget {
                   const TRatingShare(),
 
                   // PRICE - TITLE - STOCK - BRAND
-                  const TProductMetaData(),
+                  TProductMetaData(product: product),
 
                   // ATTRIBUTES
-                  const TProductAttributes(),
-                  const SizedBox(height: TSizes.spaceBtwSections),
+                  if (product.productType == ProductType.variable.toString()) TProductAttributes(product: product),
+                  if (product.productType == ProductType.variable.toString()) const SizedBox(height: TSizes.spaceBtwSections),
 
                   // CHECKOUT BUTTON
                   SizedBox(
@@ -50,17 +51,18 @@ class ProductDetailScreen extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   // DESCRIPTION
-                  const TSectionHeading(title: 'Description', showActionButton: false),
-                  const SizedBox(height: TSizes.spaceBtwItems),
-                  const ReadMoreText(
-                    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium quasi odit quod non eum optio repudiandae praesentium ratione perspiciatis rerum sunt explicabo aspernatur possimus maxime labore ipsa numquam, ducimus est.',
-                    trimLines: 2,
-                    trimMode: TrimMode.Line,
-                    trimCollapsedText: 'Show more',
-                    trimExpandedText: 'Less',
-                    moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                    lessStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                  ),
+                  if (product.description != null) const TSectionHeading(title: 'Description', showActionButton: false),
+                  if (product.description != null) const SizedBox(height: TSizes.spaceBtwItems),
+                  if (product.description != null)
+                    ReadMoreText(
+                      product.description!,
+                      trimLines: 2,
+                      trimMode: TrimMode.Line,
+                      trimCollapsedText: 'Show more',
+                      trimExpandedText: 'Less',
+                      moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                      lessStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    ),
 
                   // REVIEWS
                   const Divider(),
