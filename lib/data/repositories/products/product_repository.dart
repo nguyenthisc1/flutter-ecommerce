@@ -13,11 +13,41 @@ class ProductRepository extends GetxController {
   // VARIABLES
   final _db = FirebaseFirestore.instance;
 
-  // GET FEATURED PRODUCTS
+  // GET LIMITED FEATURED PRODUCTS
   Future<List<ProductModel>> getFeaturedProducts() async {
     try {
       final snapshot = await _db.collection('Products').where('IsFeatured', isEqualTo: true).limit(4).get();
       final list = snapshot.docs.map((document) => ProductModel.fromSnapshot(document)).toList();
+      return list;
+    } on TFirebaseException catch (error) {
+      throw TFirebaseException(error.code).message;
+    } on PlatformException catch (error) {
+      throw TPlatformException(error.code).message;
+    } catch (error) {
+      throw 'Something went wrong. \n $error';
+    }
+  }
+
+   // GET ALL FEATURED PRODUCTS
+  Future<List<ProductModel>> getAllFeaturedProducts() async {
+    try {
+      final snapshot = await _db.collection('Products').where('IsFeatured', isEqualTo: true).get();
+      final list = snapshot.docs.map((document) => ProductModel.fromSnapshot(document)).toList();
+      return list;
+    } on TFirebaseException catch (error) {
+      throw TFirebaseException(error.code).message;
+    } on PlatformException catch (error) {
+      throw TPlatformException(error.code).message;
+    } catch (error) {
+      throw 'Something went wrong. \n $error';
+    }
+  }
+
+  // FETCH PRODUCTS BY QUERY
+  Future<List<ProductModel>> fetchProductsByQuery(Query query) async {
+    try {
+      final snapshot = await query.get();
+      final List<ProductModel> list = snapshot.docs.map((document) => ProductModel.fromQuerySnapshot(document)).toList();
       return list;
     } on TFirebaseException catch (error) {
       throw TFirebaseException(error.code).message;
