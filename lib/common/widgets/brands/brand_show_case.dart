@@ -1,5 +1,6 @@
 import 'package:ecommerce/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:ecommerce/common/widgets/brands/brand_card.dart';
+import 'package:ecommerce/features/shop/models/brand_model.dart';
 import 'package:ecommerce/utils/constants/colors.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
 import 'package:ecommerce/utils/helpers/helper_functions.dart';
@@ -25,7 +26,7 @@ class TBrandShowcase extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
       child: Column(children: [
         // BRAND WITH PRODUCTS COUNT
-        const TBrandCard(showBorder: false),
+         TBrandCard(showBorder: false, brand: BrandModel.empty(),),
         const SizedBox(height: TSizes.spaceBtwItems),
         
         // BRAND TOP 3 PRODUCT IMAGE

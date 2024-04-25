@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class BrandModel {
   String id;
   String name;
@@ -35,8 +37,26 @@ class BrandModel {
       id: data['Id'] ?? '',
       name: data['Name'] ?? '',
       image: data['Image'] ?? '',
-      isFeatured: data['IsFeatured'],
-      productCount: data['ProductCount'],
+      isFeatured: data['IsFeatured'] ?? false,
+      productCount: int.parse((data['ProductCount'] ?? 0).toString()),
     );
+  }
+
+  // MAP JSON ORIENTED DOCUMENT SNAPSHOT FROM FIREBASE TO USERMODEL
+  factory BrandModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
+    if (document.data() != null) {
+      final data = document.data()!;
+
+      // MAP JSON RECORD TO THE MODEL
+      return BrandModel(
+        id: document.id,
+        name: data['Name'] ?? '',
+        image: data['Image'] ?? '',
+        isFeatured: data['IsFeatured'] ?? false,
+        productCount: int.parse((data['ProductCount'] ?? 0).toString()),
+      );
+    } else {
+      return BrandModel.empty();
+    }
   }
 }

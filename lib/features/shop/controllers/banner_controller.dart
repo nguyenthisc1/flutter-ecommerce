@@ -23,7 +23,8 @@ class BannerController extends GetxController {
     carousalCurrentIndex.value = index;
   }
 
-  // FETCH Banners
+  // FETCH Banner
+  
   Future<void> fetchBanners() async {
     try {
       isLoading.value = true;

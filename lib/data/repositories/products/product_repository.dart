@@ -28,7 +28,7 @@ class ProductRepository extends GetxController {
     }
   }
 
-   // GET ALL FEATURED PRODUCTS
+  // GET ALL FEATURED PRODUCTS
   Future<List<ProductModel>> getAllFeaturedProducts() async {
     try {
       final snapshot = await _db.collection('Products').where('IsFeatured', isEqualTo: true).get();
@@ -49,6 +49,24 @@ class ProductRepository extends GetxController {
       final snapshot = await query.get();
       final List<ProductModel> list = snapshot.docs.map((document) => ProductModel.fromQuerySnapshot(document)).toList();
       return list;
+    } on TFirebaseException catch (error) {
+      throw TFirebaseException(error.code).message;
+    } on PlatformException catch (error) {
+      throw TPlatformException(error.code).message;
+    } catch (error) {
+      throw 'Something went wrong. \n $error';
+    }
+  }
+
+  // FETCH PRODUCTS FOR BRANDS
+  Future<List<ProductModel>> getProductsForBrand({required String brandId, int limit = -1}) async {
+    try {
+      final querySnapshot =
+          limit == -1 ? await _db.collection('Products').where('Brand.id', isEqualTo: brandId).get() : await _db.collection('Products').where('Brand.id', isEqualTo: brandId).limit(limit).get();
+
+      final products = querySnapshot.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
+      
+      return products;
     } on TFirebaseException catch (error) {
       throw TFirebaseException(error.code).message;
     } on PlatformException catch (error) {
