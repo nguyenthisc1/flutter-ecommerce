@@ -14,9 +14,6 @@ class BrandController extends GetxController {
   final RxList<BrandModel> allBrands = <BrandModel>[].obs;
   final _brandRepository = Get.put(BrandRepository());
 
-  void onInit() {
-    super.onInit();
-  }
 
   // LOAD BRANDS
   Future<void> getFeaturedBrand() async {

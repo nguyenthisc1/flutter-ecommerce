@@ -1,6 +1,4 @@
 import 'package:ecommerce/common/widgets/brands/brand_show_case.dart';
-import 'package:ecommerce/common/widgets/layout/grid_layout.dart';
-import 'package:ecommerce/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:ecommerce/common/widgets/texts/section_heading.dart';
 import 'package:ecommerce/features/shop/models/category_model.dart';
 import 'package:ecommerce/utils/constants/image_strings.dart';
